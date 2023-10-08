@@ -1,17 +1,24 @@
-const express = require('express')
+const express = require("express");
+const dotenv = require("dotenv");
+const colors = require("colors");
+const morgan = require("morgan");
+const cors = require("cors");
 
-const app = express()
+// env config
+dotenv.config();
 
+const app = express();
+
+// middleware
+app.use(express.json());
+app.use(cors());
+app.use(morgan("dev"));
 
 // variables
-const PORT = 3000
+const PORT = process.env.PORT || 3000;
 
-
-// routes
-app.get('/', (req, res) => {
-    res.json({'msg': 'Server Started'})
-})
+app.use("/api/v1", require("./routes/routes"));
 
 app.listen(PORT, () => {
-    console.log(`Server started on ${PORT}`)
-})
+  console.log(`Server Running in ${process.env.dev_mode} on ${PORT}`);
+});
