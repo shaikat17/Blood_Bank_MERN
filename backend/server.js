@@ -9,7 +9,7 @@ const connectDB = require("./config/db");
 dotenv.config();
 
 // mongodb connection
-connectDB()
+connectDB();
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.use(morgan("dev"));
 const PORT = process.env.PORT || 3000;
 
 app.use("/api/v1", require("./routes/routes"));
+app.use("/api/v1/auth", require("./routes/authRoute"));
 
 app.listen(PORT, () => {
   console.log(`Server Running in ${process.env.dev_mode} on ${PORT}`);
