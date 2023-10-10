@@ -23,6 +23,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use("/api/v1", require("./routes/routes"));
 app.use("/api/v1/auth", require("./routes/authRoute"));
+app.use("/api/v1/inventory", require("./routes/inventoryRoute"));
 
 app.listen(PORT, () => {
   console.log(`Server Running in ${process.env.dev_mode} on ${PORT}`);
